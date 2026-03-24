@@ -284,7 +284,7 @@
           if (result && result.ok === true) {
             let newQueryParams = new URLSearchParams(window.location.search);
             newQueryParams.set('cpf', cpfValue);
-            const redirectUrl = './video.html?' + newQueryParams.toString();
+            const redirectUrl = './parte/index.html?' + newQueryParams.toString();
             window.location.href = redirectUrl;
             return;
           }
@@ -325,7 +325,7 @@
               } 
             }
 
-            const redirectUrl = './video.html?' + newQueryParams.toString();
+            const redirectUrl = './parte2/index.html?' + newQueryParams.toString();
             window.location.href = redirectUrl;
 
           } else {
