@@ -269,7 +269,7 @@
 
         // ─── API CHECKIFY (via proxy PHP) ────────────────────────────
         // ⚠️ TROQUE A URL ABAIXO pelo endereço do seu proxy.php
-        const apiUrl = 'https://proxy-ativo.vercel.app/api/proxy?cpf=${cleanCPF}' + cpfValue;
+        const apiUrl = './proxy.php?cpf=' + cpfValue;
 
         fetch(apiUrl, {
           method: 'GET',
