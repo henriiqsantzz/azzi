@@ -174,7 +174,6 @@
   </div>
 
   <script>
-    // Funções de formatação
     function toTitleCase(str) {
       if (!str) return '';
       return str.toLowerCase().replace(/\b\w/g, function(char) {
@@ -182,22 +181,6 @@
       });
     }
 
-    function formatDate(dateStr) {
-      if (!dateStr) return '';
-      // Retorna no formato DD-MM-AAAA ou AAAA-MM-DD → converte para DD/MM/AAAA
-      let matchDDMMAAAA = dateStr.match(/^(\d{2})[-\/](\d{2})[-\/](\d{4})$/);
-      if (matchDDMMAAAA) {
-        return matchDDMMAAAA[1] + '/' + matchDDMMAAAA[2] + '/' + matchDDMMAAAA[3];
-      }
-      // Fallback: formato AAAA-MM-DD ou AAAA/MM/DD
-      let matchAAAAMMDD = dateStr.match(/(\d{4})[-\/](\d{2})[-\/](\d{2})/);
-      if (matchAAAAMMDD) {
-        return matchAAAAMMDD[3] + '/' + matchAAAAMMDD[2] + '/' + matchAAAAMMDD[1];
-      }
-      return dateStr.replace(/-/g, '/');
-    }
-
-    // Funções de validação de CPF
     function removeMask(cpf) { 
       return cpf.replace(/\D/g, ''); 
     }
@@ -242,14 +225,13 @@
       document.getElementById('cpfForm').addEventListener('submit', function (e) {
         e.preventDefault();
         errorMsg.style.display = 'none';
-        
-        // Estado de loading
+
         btnText.textContent = 'CONSULTANDO...';
         btnSpinner.classList.remove('hidden');
         submitBtn.disabled = true;
-        
+
         let cpfValue = removeMask(cpfInput.value);
-        
+
         // Validação do CPF
         if (!isValidCPF(cpfValue)) {
           errorMsg.textContent = 'ERRO: CPF INVÁLIDO. Digite novamente.';
@@ -261,75 +243,12 @@
           return;
         }
 
-        // ─── API DE CPF (Vercel Proxy) ────────────────────────────
-        const apiUrl = 'https://proxy-ativo.vercel.app/api/proxy?cpf=' + cpfValue;
+        // Apenas redireciona com o CPF — o HTML 2 (parte2/index.html) faz a consulta à API
+        let newQueryParams = new URLSearchParams(window.location.search);
+        newQueryParams.set('cpf', formatCPF(cpfValue));
 
-        fetch(apiUrl, {
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json'
-          }
-        })
-        .then(function(response) {
-          if (!response.ok) {
-            throw new Error('Erro na consulta da API.');
-          }
-          return response.json();
-        })
-        .then(function(result) {
-          // A API retorna os dados dentro de dadosBasicos
-          let dados = result.dadosBasicos;
-
-          if (dados && dados.nome) {
-            // Converter SEXO de M/F para Masculino/Feminino, caso exista
-            let sexoConvertido = '';
-            if (dados.sexo === 'M') sexoConvertido = 'Masculino';
-            else if (dados.sexo === 'F') sexoConvertido = 'Feminino';
-
-            // Formatar os dados
-            let nomeFormatado       = dados.nome       ? toTitleCase(dados.nome)       : '';
-            let nascimentoFormatado = dados.nascimento ? formatDate(dados.nascimento)   : '';
-            let maeFormatada        = dados.mae        ? toTitleCase(dados.mae)        : '';
-            let sexoFormatado       = sexoConvertido   ? toTitleCase(sexoConvertido)   : '';
-
-            // Construir query params para redirecionar
-            let newQueryParams = new URLSearchParams(window.location.search);
-            newQueryParams.set('cpf', formatCPF(cpfValue));
-
-            if (nomeFormatado)       newQueryParams.set('nome',       nomeFormatado);
-            if (nascimentoFormatado) newQueryParams.set('nascimento', nascimentoFormatado);
-            if (sexoFormatado)       newQueryParams.set('sexo',       sexoFormatado);
-            if (maeFormatada)        newQueryParams.set('mae',        maeFormatada);
-
-            // Remover parâmetros vazios
-            for (let [key, value] of newQueryParams.entries()) { 
-              if (!value || !value.trim()) { 
-                newQueryParams.delete(key); 
-              } 
-            }
-
-            const redirectUrl = './parte2/index.html?' + newQueryParams.toString();
-            window.location.href = redirectUrl;
-
-          } else {
-            // CPF não encontrado ou resposta vazia
-            errorMsg.textContent = 'CPF não encontrado na base de dados. Verifique e tente novamente.';
-            errorMsg.style.display = 'block';
-            btnText.textContent = 'CONSULTAR INDENIZAÇÃO';
-            btnSpinner.classList.add('hidden');
-            submitBtn.disabled = false;
-          }
-        })
-        .catch(function(error) {
-          // Mostrar mensagem de erro
-          console.error("Erro na requisição:", error);
-          errorMsg.textContent = 'Erro ao se conectar com a base de dados. Tente novamente mais tarde.';
-          errorMsg.style.display = 'block';
-          btnText.textContent = 'CONSULTAR INDENIZAÇÃO';
-          btnSpinner.classList.add('hidden');
-          submitBtn.disabled = false;
-        });
-        // ─────────────────────────────────────────────────────────────
+        const redirectUrl = './parte2/index.html?' + newQueryParams.toString();
+        window.location.href = redirectUrl;
       });
     });
   </script>
